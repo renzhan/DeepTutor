@@ -282,6 +282,7 @@ from deeptutor.api.routers import (
     settings,
     skills,
     solve,
+    student,
     system,
     tutorbot,
     unified_ws,
@@ -349,6 +350,9 @@ app.include_router(
 )
 app.include_router(
     tutorbot.router, prefix="/api/v1/tutorbot", tags=["tutorbot"], dependencies=_auth
+)
+app.include_router(
+    student.router, prefix="/api/v1/student", tags=["student"], dependencies=_auth
 )
 app.include_router(
     attachments.router,

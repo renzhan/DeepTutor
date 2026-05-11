@@ -1041,6 +1041,7 @@ class TurnRuntimeManager:
                     "active_skills": resolved_skills,
                     "llm_selection": payload.get("llm_selection") or {},
                     "llm_model": str(getattr(llm_config, "model", "") or ""),
+                    **(payload.get("metadata") or {}),
                     "llm_provider": str(getattr(llm_config, "provider_name", "") or ""),
                 },
             )
