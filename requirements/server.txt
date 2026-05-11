@@ -23,6 +23,9 @@ python-jose[cryptography]>=3.3.0
 # Only used when POCKETBASE_URL is set in the environment.
 pocketbase>=0.12.0
 
+# --- PostgreSQL (Supabase) ---
+psycopg2-binary>=2.9.0
+
 # --- LLM provider runtime (unconditionally imported by provider_core) ---
 loguru>=0.7.3,<1.0.0
 json-repair>=0.57.0,<1.0.0
