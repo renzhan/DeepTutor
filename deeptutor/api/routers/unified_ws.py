@@ -113,8 +113,21 @@ async def unified_websocket(ws: WebSocket) -> None:
 
             msg_type = msg.get("type")
 
+            # Handle ping/pong for keepalive
+            if msg_type == "ping":
+                await safe_send({"type": "pong"})
+                continue
+
             if msg_type in {"message", "start_turn"}:
                 from deeptutor.services.session import get_turn_runtime_manager
+
+                # Inject WebSocket token into message metadata so capabilities
+                # can identify the user (e.g., for mastery persistence)
+                ws_token = ws.query_params.get("token", "")
+                if ws_token:
+                    msg_metadata = msg.get("metadata") or {}
+                    msg_metadata["wx_token"] = ws_token
+                    msg["metadata"] = msg_metadata
 
                 runtime = get_turn_runtime_manager()
                 try:

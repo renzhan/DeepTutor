@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../k12_wx"
 		}
 	],
 	"settings": {}
